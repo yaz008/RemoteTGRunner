@@ -1,5 +1,5 @@
 from bot import bot
-from os import getenv
+from os import getenv, listdir
 from _utils.filters import auth
 from _utils.save import save
 from _utils.async_run import async_run
@@ -14,10 +14,18 @@ def remove_extension(name: str) -> str:
 @bot.message_handler(content_types=['document'])
 @auth
 def on_document(message: Message) -> None:
+    PROJECTS: str = getenv(key='PROJECTS')
+    SAVED: str = f'{PROJECTS}\\saved'
+    project_name: str = remove_extension(message.document.file_name)
+    if project_name.lower() in [name.lower() for name in listdir(path=SAVED)]:
+        bot.send_message(chat_id=int(getenv(key='MY_ID')),
+                         text=f'Project \"{project_name}\" already exists')
+        return None
+    
     reply: Message = bot.send_message(chat_id=int(getenv(key='MY_ID')),
                                       text='Assembly...')
-    save(file_id=message.document.file_id)
-    project_name: str = remove_extension(message.document.file_name)
+    save(file_id=message.document.file_id,
+         project_name=project_name)
     project_thread: Thread = async_run(project_name=project_name)
     RUNNING.update({ project_thread.name: project_thread })
     bot.edit_message_text(text=f'{project_thread.name} is running',
