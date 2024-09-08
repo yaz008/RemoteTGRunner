@@ -8,7 +8,7 @@ Clone the repository
 git clone https://github.com/yaz008/RemoteTGRunner.git
 ```
 
-Create Python 3.10.9 virtual environment and run
+Create Python virtual environment, activate it and run
 
 ```sh
 pip install -r requirements.txt 
@@ -27,7 +27,7 @@ TELEGRAM_API_KEY="YOUR-BOT-TOKEN"
 MY_ID="YOUR-TELEGRAM-ID"
 PROJECTS="ABSOLUTE-PATH-TO-PROJECTS-FOLDER"
 TEMP="ABSOLUTE-PATH-TO-TEMP-FOLDER"
-PYTHON_v3_10_9="PATH-TO-PYTHON_v3_10_9"
+PYTHON="PATH-TO-YOUR-PYTHON"
 ```
 
 ## Usage
@@ -36,11 +36,7 @@ PYTHON_v3_10_9="PATH-TO-PYTHON_v3_10_9"
 
 2. Send it to your bot
 
-**Note:**
-
-- As of now, only Python 3.10.9 is supported
-
-- Main entry point must be `your-project-name/src/main.py`
+**Note:** Main entry point must be `your-project-name/src/main.py`
 
 ## License
 

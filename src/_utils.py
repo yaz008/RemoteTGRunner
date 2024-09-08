@@ -20,7 +20,7 @@ def run_project() -> None:
     PROJECTS_FOLDER: str = getenv(key='PROJECTS')
     PROJECT_NAME: str = listdir(path=PROJECTS_FOLDER)[0]
     PROJECT: str = f'{PROJECTS_FOLDER}\\{PROJECT_NAME}'
-    PYTHON: str = getenv(key='PYTHON_v3_10_9')
+    PYTHON: str = getenv(key='PYTHON')
     PIP: str = f'{PROJECT}\\.venv\\Scripts\\pip.exe'
     VENV_PYTHON: str = f'{PROJECT}\\.venv\\Scripts\\python.exe'
     run(['virtualenv', f'--python={PYTHON}', f'{PROJECT}\\.venv'])
