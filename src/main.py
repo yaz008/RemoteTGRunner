@@ -19,6 +19,15 @@ def on_running(message: Message) -> None:
                      text=str([f'{index + 1}: {project.name}'
                                for index, project
                                in enumerate(RUNNING)]))
+    
+@bot.message_handler(commands=['stop'])
+@auth
+def on_stop(message: Message) -> None:
+    for project in RUNNING:
+        project.join(timeout=0)
+    bot.send_message(chat_id=message.from_user.id,
+                     text='Bot is stopped')
+    exit(code=0)
 
 @bot.message_handler(content_types=['document'])
 @auth
