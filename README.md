@@ -14,6 +14,12 @@ Create Python 3.10.9 virtual environment and run
 pip install -r requirements.txt 
 ```
 
+Run `setup.bat` to create `projects` and `temp` folders
+
+```sh
+./setup.bat
+```
+
 Create `.env` file:
 
 ```env
@@ -23,8 +29,6 @@ PROJECTS="ABSOLUTE-PATH-TO-PROJECTS-FOLDER"
 TEMP="ABSOLUTE-PATH-TO-TEMP-FOLDER"
 PYTHON_v3_10_9="PATH-TO-PYTHON_v3_10_9"
 ```
-
-Create `code.rar` file in the `temp` folder
 
 ## Usage
 
