@@ -1,5 +1,5 @@
 from bot import bot
-from _utils import save_document, unpack
+from _utils import save_document, unpack, run_project
 from telebot.types import Message
 
 @bot.message_handler(commands=['start'])
@@ -10,6 +10,7 @@ def on_start(message: Message) -> None:
 def on_document(message: Message) -> None:
     save_document(file_id=message.document.file_id)
     unpack()
+    run_project()
 
 if __name__ == '__main__':
     bot.infinity_polling()
