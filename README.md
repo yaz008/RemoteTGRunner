@@ -14,7 +14,7 @@ Create Python virtual environment, activate it and run
 pip install -r requirements.txt 
 ```
 
-Run `setup.bat` to create `projects` and `temp` folders
+Run `setup.bat` to create `projects/running` and `projects/saved` folders
 
 ```sh
 ./setup.bat
