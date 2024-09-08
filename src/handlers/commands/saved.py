@@ -8,8 +8,8 @@ from telebot.types import Message
 def on_projects(message: Message) -> None:
     PROJECTS: str = getenv(key='PROJECTS')
     SAVED: str = f'{PROJECTS}\\saved'
-    text: str = '\n'.join([f'{index + 1}: {name}'
+    text: str = '\n'.join([f'{index}: {name}'
                            for index, name
-                           in enumerate(listdir(path=SAVED))])
+                           in enumerate(listdir(path=SAVED), start=1)])
     bot.send_message(chat_id=message.from_user.id,
                      text='No projects' if text == '' else text)
