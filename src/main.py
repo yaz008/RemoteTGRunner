@@ -1,5 +1,5 @@
 from bot import bot
-from os import getenv
+from os import getenv, listdir
 from _async import async_run
 from _filters import auth
 from telebot.types import Message
@@ -11,14 +11,6 @@ RUNNING: list[Thread] = []
 @auth
 def on_start(message: Message) -> None:
     bot.send_message(chat_id=message.from_user.id, text='Hello!')
-
-@bot.message_handler(commands=['running'])
-@auth
-def on_running(message: Message) -> None:
-    bot.send_message(chat_id=message.from_user.id,
-                     text=str([f'{index + 1}: {project.name}'
-                               for index, project
-                               in enumerate(RUNNING)]))
     
 @bot.message_handler(commands=['stop'])
 @auth
@@ -28,6 +20,24 @@ def on_stop(message: Message) -> None:
     bot.send_message(chat_id=message.from_user.id,
                      text='Bot is stopped')
     exit(code=0)
+
+@bot.message_handler(commands=['running'])
+@auth
+def on_running(message: Message) -> None:
+    text: str = '\n'.join([f'{index + 1}: {project.name}'
+                           for index, project
+                           in enumerate(RUNNING)])
+    bot.send_message(chat_id=message.from_user.id,
+                     text='Nothing is running' if text == '' else text)
+    
+@bot.message_handler(commands=['projects'])
+@auth
+def on_running(message: Message) -> None:
+    text: str = '\n'.join([f'{index + 1}: {name}'
+                           for index, name
+                           in enumerate(listdir(path=getenv(key='PROJECTS')))])
+    bot.send_message(chat_id=message.from_user.id,
+                     text='No projects' if text == '' else text)
 
 @bot.message_handler(content_types=['document'])
 @auth
